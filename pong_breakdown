@@ -1,0 +1,23 @@
+class scoreboard:
+    increase_score
+    update_scoreboard
+    game_over
+
+
+class Paddle(Turtle):
+    up
+    down
+
+class Ball(Turtle):
+    move
+
+STEPS:
+
+1. Create the screen - done
+2. Create and move a paddle - done
+3. Create another paddle - done
+4. Create the ball and make it move - done
+5. Detect collision with wall and bounce
+6. Detect collision with paddle
+7. Detect when paddle misses
+8. Keep score
