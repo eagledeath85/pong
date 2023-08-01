@@ -1,3 +1,4 @@
+import random
 from turtle import Turtle
 
 
@@ -7,31 +8,31 @@ class Ball(Turtle):
         self.shape("square")
         self.penup()
         self.color("white")
-        self.shape("square")
+        self.shape("circle")
         self.goto(position)
+        self.x_move = 10
+        self.y_move = 10
+        self.move_speed = 0.1
+
+    def y_bounce(self):
+        """Changing y direction when bouncing"""
+        self.y_move *= -1
+
+    def x_bounce(self):
+        """Changing x direction when bouncing, and increasing the speed"""
+        self.x_move *= -1
+        self.move_speed *= 0.9
+
 
     def move(self):
-        # current_x = self.xcor() + 10
-        # current_y = self.ycor() + 10
-        #self.goto(current_x, current_y)
-        current_x, current_y = self.position()
-        has_reached_edge = False
-        while has_reached_edge:
-            new_x = current_x + 10
-            new_y = current_y + 10
+        current_x = self.xcor() + self.x_move
+        current_y = self.ycor() + self.y_move
+        self.goto(current_x, current_y)
 
-            if new_y < 300:
-                new_x = current_x + 10
-                new_y = current_y + 10
-            elif current_y == 300:
-                new_x = current_x + 10
-                new_y = self.ycor() - 10
-                has_reached_edge = True
-            elif current_y == -300:
-                new_x = current_x + 10
-                new_y = self.ycor() + 10
-                has_reached_edge = True
-            else:
-                new_x = current_x + 10
-                new_y = self.ycor() + 10
-            self.goto(new_x, new_y)
+    def reset_position(self):
+        self.setposition(0, 0)
+        # Reset the ball speed at its initial value
+        self.move_speed = 0.1
+        self.x_bounce()
+
+
